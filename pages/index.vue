@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="wrap finance-service">
+    <!-- <div class="wrap finance-service">
       <h2 class="finance-service-title">
         金融服务
       </h2>
@@ -37,7 +37,7 @@
       <div>
         <h3>热门金融产品</h3>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -47,9 +47,6 @@ export default {
   data() {
     return {
       items: [
-        require('../assets/imgs/banner1920＊630.png'),
-        require('../assets/imgs/banner1920＊630.png'),
-        require('../assets/imgs/banner1920＊630.png'),
         require('../assets/imgs/banner1920＊630.png')
       ],
       homeImgs: [

@@ -21,20 +21,43 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || '',
-      },
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '@/assets/css/main.css',
+
+    // 'ant-design-vue/dist/antd.css'
+    // 引入需要的ant-design组件样式
+    'ant-design-vue/lib/icon/style/css',
+    'ant-design-vue/lib/button/style/css',
+    'ant-design-vue/lib/layout/style/css',
+    'ant-design-vue/lib/carousel/style/css',
+    'ant-design-vue/lib/back-top/style/css',
+    'ant-design-vue/lib/form/style/css',
+    'ant-design-vue/lib/input/style/css',
+    'ant-design-vue/lib/select/style/css',
+    'ant-design-vue/lib/checkbox/style/css',
+    'ant-design-vue/lib/cascader/style/css',
+    'ant-design-vue/lib/pagination/style/css',
+    'ant-design-vue/lib/breadcrumb/style/css',
+    'ant-design-vue/lib/table/style/css',
+    'ant-design-vue/lib/message/style/css',
+    'ant-design-vue/lib/radio/style/css',
+    'ant-design-vue/lib/spin/style/css'
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [
+    '@/plugins/antd-ui'
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -45,14 +68,14 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module',
+    '@nuxtjs/eslint-module'
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   /*
    ** Axios module configuration
@@ -63,5 +86,5 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {}
 }
