@@ -1,28 +1,24 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  headers: {}
+  // headers: {}
 })
-const PROXY_URL = '/apiproxy/proxy/switch'
+const PROXY_URL = '/common/verify/getSimpleVerifyImage'
 
 // 请求拦截
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(function(config) {
   // console.log(process.server, process.env.proxyURL)
-  if (process.server) {
-    config.baseURL = process.env.proxyURL
-  }
-  if (!config.url) {
-    config.url = PROXY_URL
-  }
+  config.baseURL = process.env.proxyURL
+  config.url = PROXY_URL
   return config
-}, function (error) {
+}, function(error) {
   return Promise.reject(error)
 })
 
 // 响应拦截
-instance.interceptors.response.use(function (response) {
+instance.interceptors.response.use(function(response) {
   const resData = response.data
-  if (resData.code === 200 || resData.code === '200') {
+  if (resData.statusCode === '000000') {
     resData.success = true
     return resData
   } else if (resData.success === true || resData.success === 'true') {
@@ -41,10 +37,10 @@ instance.interceptors.response.use(function (response) {
   } else {
     return Promise.reject(resData)
   }
-}, function (error) {
+}, function(error) {
   return Promise.reject(error)
 })
 
-export default function (config) {
+export default function(config) {
   return instance.request(config)
 }

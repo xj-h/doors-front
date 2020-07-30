@@ -1,3 +1,5 @@
+const ENV_CONFIG = require('./env.config')
+
 export default {
   /*
    ** Nuxt rendering mode
@@ -75,16 +77,39 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    // 开发模式下开启debug
+    debug: process.env._ENV !== 'production',
+
+    baseURL:
+
+    process.env._ENV === 'production'
+
+      ? 'http://localhost:3000/common'
+
+      : 'http://localhost:3000/common'
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {}
+  build: {},
+  proxy: {
+    '/common/': {
+      target: 'http://api.apishop.net',
+      pathRewrite: { '^/api/': '' }
+    }
+  },
+  // 环境变量配置
+  env: {
+    proxyURL: ENV_CONFIG[process.env.NODE_ENV].proxyURL || 'http://localhost:3000'
+    // baseURL: ENV_CONFIG[process.env.NODE_ENV].BASE_URL,
+  }
 }

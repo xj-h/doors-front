@@ -20,16 +20,14 @@
           <div v-if="msgLogin" style="margin-top:40px">
             <label class="from-label">验证码</label>
             <input v-model.trim="msgInfo.chkCode" class="from-input" type="text" placeholder="输入手机验证码" style="width:255px">
-            <div class="msg-btn-wrap">
-              <msg-btn ref="msgBtnRef" :mobile="mobile" @msgSend="setChkId" @downTime="setAuidoTip" />
-            </div>
+            <div class="msg-btn-wrap" />
             <p class="msg-btn-tip">
               收不到短信验证码
               <span v-if="seconds" style="color:#ccc">{{ audioTip }}</span>
-              <span v-else style="color:#FF5043" @click="audioCode">{{ audioTip }}</span>
+              <span v-else style="color:#FF5043">{{ audioTip }}</span>
             </p>
             <div>
-              <label class="from-label">{{ imgurl }}</label>
+              <label class="from-label"><img :src="imgurl" height="48" width="120"></label>
               <input v-model.trim="msgInfo.chksCode" class="from-input" type="text" placeholder="请输入左侧验证码" style="width:255px">
             </div>
           </div>
@@ -60,12 +58,12 @@
 
 <script>
 import loginRegisterWrap from '@/components/login-register-wrap'
-
+import { getcodeimg } from '../api/home'
 export default {
   components: { loginRegisterWrap },
   data() {
     return {
-      imgurl: 'http://data.apishop.net/checkcode/tdka4newqhfbszyv.png',
+      imgurl: '',
       msgLogin: true,
       audioTip: '使用语音验证码',
       seconds: null,
@@ -81,7 +79,18 @@ export default {
   },
   computed: {
   },
+  created() {
+    this.templist()
+  },
   methods: {
+    templist() {
+      const pam = {
+        apiKey: '4e7nPdAef320ae2febf0ebea4b3de018628baf56aa33038',
+        codeType: '4' }
+      getcodeimg(pam).then(res => {
+        this.imgurl = res.result.fileName
+      })
+    },
     selectType(type) {
       this.msgLogin = (type === 'msglogin')
     },
