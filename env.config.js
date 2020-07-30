@@ -9,6 +9,6 @@ module.exports = {
   },
   production: {
     MODE: 'production',
-    proxyURL: 'http://t.hanhua.com'
+    proxyURL: 'http://api.apishop.net'
   }
 }
